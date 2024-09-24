@@ -1,8 +1,8 @@
-@import 'fonts';
-@import 'variables';
-@import 'libs/normalize';
+// @import './fonts';
+@import './variables';
+@import './libs/normalize';
 
-@import 'components/all';
+@import './components/all';
 
 body {
   background-color: $background;
