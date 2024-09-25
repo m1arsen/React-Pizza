@@ -1,6 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
+  const navigate = useNavigate();
+
+  const goBackButton = () => {
+    window.scrollTo(0, 0);
+    navigate('/');
+  };
+
   return (
     <div className="container container--cart">
       <div class="cart">
@@ -392,7 +399,7 @@ const Cart = () => {
             </span>
           </div>
           <div class="cart__bottom-buttons">
-            <Link to="/" class="button button--outline button--add go-back-btn">
+            <div onClick={goBackButton} class="button button--outline button--add go-back-btn">
               <svg
                 width="8"
                 height="14"
@@ -410,7 +417,7 @@ const Cart = () => {
               </svg>
 
               <span>Вернуться назад</span>
-            </Link>
+            </div>
             <div class="button pay-btn">
               <span>Оплатить сейчас</span>
             </div>
