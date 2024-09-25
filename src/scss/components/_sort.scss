@@ -2,6 +2,7 @@
 
 .sort {
   position: relative;
+
   &__label {
     display: flex;
     align-items: center;
@@ -11,6 +12,7 @@
     }
 
     b {
+      white-space: nowrap;
       margin-right: 8px;
     }
 
