@@ -13,7 +13,6 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 const Home = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const [sortType, setSortType] = useState({ name: 'популярности', sortProperty: 'rating' });
 
   const { searchValue } = useContext(SearchContext);
 
