@@ -1,14 +1,19 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../App';
 
 import axios from 'axios';
+import qs from 'qs';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFilters } from '../redux/slices/filterSlice';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
+
+import { list } from '../components/Sort';
 
 const Home = () => {
   const [items, setItems] = useState([]);
@@ -16,9 +21,14 @@ const Home = () => {
 
   const { searchValue } = useContext(SearchContext);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isSearch = useRef(false);
+  const isMounted = useRef(false);
+
   const { categoryId, sort } = useSelector((state) => state.filter);
 
-  useEffect(() => {
+  const fetchPizzas = () => {
     setIsLoading(true);
 
     const apiBase = process.env.REACT_APP_MOCKAPI_TOKEN;
@@ -32,6 +42,42 @@ const Home = () => {
         setItems(res.data);
         setIsLoading(false);
       });
+  };
+
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        }),
+      );
+      isSearch.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isSearch.current) {
+      fetchPizzas();
+    }
+
+    isSearch.current = false;
+  }, [categoryId, sort]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+      });
+
+      navigate('?' + queryString);
+    }
+    isMounted.current = true;
   }, [categoryId, sort]);
 
   const pizzas = items
