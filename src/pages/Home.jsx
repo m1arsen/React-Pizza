@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { SearchContext } from '../App';
 
+import axios from 'axios';
+
 import { useSelector } from 'react-redux';
 
 import Categories from '../components/Categories';
@@ -23,12 +25,12 @@ const Home = () => {
     const apiBase = process.env.REACT_APP_MOCKAPI_TOKEN;
     const categoryQuery = categoryId !== 0 ? `category=${categoryId}` : '';
 
-    fetch(
-      `https://${apiBase}.mockapi.io/items?${categoryQuery}&sortBy=${sort.sortProperty}&order=desc`,
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setItems(json);
+    axios
+      .get(
+        `https://${apiBase}.mockapi.io/items?${categoryQuery}&sortBy=${sort.sortProperty}&order=desc`,
+      )
+      .then((res) => {
+        setItems(res.data);
         setIsLoading(false);
       });
   }, [categoryId, sort]);
