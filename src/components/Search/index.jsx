@@ -52,7 +52,7 @@ export const Search = () => {
       {value && (
         <svg
           className={styles.clearIcon}
-          onClick={onClickClear}
+          onMouseDown={onClickClear}
           fill="none"
           height="24"
           viewBox="0 0 24 24"
