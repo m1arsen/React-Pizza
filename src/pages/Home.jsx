@@ -28,20 +28,23 @@ const Home = () => {
 
   const { categoryId, sort } = useSelector((state) => state.filter);
 
-  const fetchPizzas = () => {
+  const fetchPizzas = async () => {
     setIsLoading(true);
 
     const apiBase = process.env.REACT_APP_MOCKAPI_TOKEN;
     const categoryQuery = categoryId !== 0 ? `category=${categoryId}` : '';
 
-    axios
-      .get(
+    try {
+      const res = await axios.get(
         `https://${apiBase}.mockapi.io/items?${categoryQuery}&sortBy=${sort.sortProperty}&order=desc`,
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      });
+      );
+      setItems(res.data);
+    } catch (error) {
+      console.log('ERROR', error);
+      alert('Ошибка при получении пицц');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
