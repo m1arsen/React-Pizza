@@ -33,6 +33,22 @@ body {
     padding: 20px 0;
   }
 
+  &__error-info {
+    margin: 100px auto;
+    text-align: center;
+
+    h2 {
+      margin-bottom: 20px;
+
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
+
   &__title {
     margin: 35px 0;
     font-weight: 700;

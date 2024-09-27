@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext, useRef } from 'react';
+import { useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../App';
 
-import axios from 'axios';
 import qs from 'qs';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilters } from '../redux/slices/filterSlice';
+import { fetchPizzas } from '../redux/slices/pizzaSlice';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -16,9 +16,6 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import { list } from '../components/Sort';
 
 const Home = () => {
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
   const { searchValue } = useContext(SearchContext);
 
   const dispatch = useDispatch();
@@ -26,25 +23,19 @@ const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
+  const { items, status } = useSelector((state) => state.pizza);
   const { categoryId, sort } = useSelector((state) => state.filter);
 
-  const fetchPizzas = async () => {
-    setIsLoading(true);
+  const getPizzas = () => {
+    const sortBy = sort.sortProperty;
+    const category = categoryId !== 0 ? `category=${categoryId}` : '';
 
-    const apiBase = process.env.REACT_APP_MOCKAPI_TOKEN;
-    const categoryQuery = categoryId !== 0 ? `category=${categoryId}` : '';
-
-    try {
-      const res = await axios.get(
-        `https://${apiBase}.mockapi.io/items?${categoryQuery}&sortBy=${sort.sortProperty}&order=desc`,
-      );
-      setItems(res.data);
-    } catch (error) {
-      console.log('ERROR', error);
-      alert('Ошибка при получении пицц');
-    } finally {
-      setIsLoading(false);
-    }
+    dispatch(
+      fetchPizzas({
+        sortBy,
+        category,
+      }),
+    );
   };
 
   useEffect(() => {
@@ -65,7 +56,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!isSearch.current) {
-      fetchPizzas();
+      getPizzas();
     }
 
     isSearch.current = false;
@@ -105,7 +96,16 @@ const Home = () => {
         <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">{isLoading ? skeletons : pizzas}</div>
+      {status === 'error' ? (
+        <div className="content__error-info">
+          <h2>Произошла ошибка 😕</h2>
+          <p>
+            К сожалению, не удалось получить пиццы. <br /> Попробуйте повторить попытку позже.
+          </p>
+        </div>
+      ) : (
+        <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
+      )}
     </div>
   );
 };
