@@ -5,8 +5,8 @@ import { SearchContext } from '../App';
 import qs from 'qs';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setFilters } from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/pizzaSlice';
+import { setFilters, selectFilter } from '../redux/slices/filterSlice';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -23,8 +23,8 @@ const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
-  const { items, status } = useSelector((state) => state.pizza);
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { items, status } = useSelector(selectPizzaData);
+  const { categoryId, sort } = useSelector(selectFilter);
 
   const getPizzas = () => {
     const sortBy = sort.sortProperty;
