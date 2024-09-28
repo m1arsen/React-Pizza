@@ -16,15 +16,13 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import { list } from '../components/Sort';
 
 const Home = () => {
-  const { searchValue } = useContext(SearchContext);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
   const { items, status } = useSelector(selectPizzaData);
-  const { categoryId, sort } = useSelector(selectFilter);
+  const { categoryId, sort, searchValue } = useSelector(selectFilter);
 
   const getPizzas = () => {
     const sortBy = sort.sortProperty;
