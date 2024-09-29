@@ -1,21 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function FullPizza() {
   const [pizza, setPizza] = useState();
   const { pizzaId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get('https://66f31c6771c84d805877e165.mockapi.io/items/' + pizzaId)
-      .then((res) => {
-        setPizza(res.data);
-        // console.log(res.data);
-      })
-      .catch((e) => {
-        console.log('ERROR: ', e);
-      });
+    async function fetchPizza() {
+      try {
+        const { data } = await axios.get(
+          'https://66f31c6771c84d805877e165.mockapi.io/items/' + pizzaId,
+        );
+        setPizza(data);
+      } catch (error) {
+        alert('Ошибка при получении пиццы!');
+        navigate('/');
+      }
+    }
+
+    fetchPizza();
   }, [pizzaId]);
 
   if (!pizza) {
