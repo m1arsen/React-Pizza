@@ -1,6 +1,5 @@
-import { useEffect, useContext, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SearchContext } from '../App';
 
 import qs from 'qs';
 

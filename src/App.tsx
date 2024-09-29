@@ -9,15 +9,6 @@ import NotFound from './pages/NotFound';
 
 import './scss/app.scss';
 
-const Parent = ({ children }) => {
-  return (
-    <div>
-      <h1>Заголовок</h1>
-      {children}
-    </div>
-  );
-};
-
 function App() {
   return (
     <Routes>
