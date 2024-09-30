@@ -23,8 +23,10 @@ const Sort: React.FC = () => {
   const sortRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClickOutside = (e: any) => {
-      if (!e.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      const current = sortRef.current;
+      const path = e.composedPath();
+      if (current && !path.includes(current)) {
         setOpen(false);
       }
     };
