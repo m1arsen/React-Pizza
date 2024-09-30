@@ -2,16 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearItems, selectCart } from '../redux/slices/cartSlice';
 
-import CartItem from '../components/cartItem';
-import CartEmpty from '../components/cartEmpty';
+import CartItem from '../components/CartItem';
+import CartEmpty from '../components/CartEmpty';
 
-const Cart = () => {
+const Cart: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { totalPrice, items } = useSelector(selectCart);
 
-  const totalCount = items.reduce((sum, obj) => sum + obj.count, 0);
+  const totalCount = items.reduce((sum: number, obj: any) => sum + obj.count, 0);
 
   const onClickClear = () => {
     dispatch(clearItems());
@@ -104,7 +104,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((item) => (
+          {items.map((item: any) => (
             <CartItem key={item.id} {...item} />
           ))}
         </div>

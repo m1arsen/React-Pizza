@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import qs from 'qs';
@@ -14,7 +14,7 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 
 import { list } from '../components/Sort';
 
-const Home = () => {
+const Home: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = useRef(false);
@@ -28,6 +28,7 @@ const Home = () => {
     const category = categoryId !== 0 ? `category=${categoryId}` : '';
 
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         sortBy,
         category,
@@ -72,7 +73,7 @@ const Home = () => {
   }, [categoryId, sort]);
 
   const pizzas = items
-    .filter((obj) => {
+    .filter((obj: any) => {
       const pizzaTitle = obj.title.toLowerCase().trim();
       const searchedValue = searchValue.toLowerCase().trim();
 
@@ -82,7 +83,7 @@ const Home = () => {
         return false;
       }
     })
-    .map((props) => <PizzaBlock key={props.id} {...props} />);
+    .map((props: any) => <PizzaBlock key={props.id} {...props} />);
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 

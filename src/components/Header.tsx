@@ -7,11 +7,11 @@ import Search from './Search';
 
 import logoSvg from '../assets/img/pizza-logo.svg';
 
-const Header = () => {
+const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const { pathname } = useLocation();
 
-  const itemsCount = items.reduce((sum, obj) => sum + obj.count, 0);
+  const itemsCount = items.reduce((sum: number, obj: any) => sum + obj.count, 0);
 
   return (
     <div className="header">

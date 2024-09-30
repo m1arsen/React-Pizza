@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import cartEmptyImg from '../assets/img/empty-cart.png';
 
-const CartEmpty = () => {
+const CartEmpty: React.FC = () => {
   const navigate = useNavigate();
 
   const goBackButton = () => {
