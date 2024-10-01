@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearItems } from '../redux/cart/slice';
 import { selectCart } from '../redux/cart/selectors';
 
-import CartItem from '../components/CartItem';
-import CartEmpty from '../components/CartEmpty';
+import { CartItem } from '../components';
+import { CartEmpty } from '../components';
 
 const Cart: React.FC = () => {
   const navigate = useNavigate();

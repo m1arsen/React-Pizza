@@ -20,7 +20,7 @@ type TSortProps = {
   value: TSort;
 };
 
-const Sort: React.FC<TSortProps> = memo(({ value }) => {
+export const Sort: React.FC<TSortProps> = memo(({ value }) => {
   const [open, setOpen] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -83,5 +83,3 @@ const Sort: React.FC<TSortProps> = memo(({ value }) => {
     </div>
   );
 });
-
-export default Sort;

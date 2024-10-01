@@ -15,10 +15,7 @@ import { fetchPizzas } from '../redux/pizza/asyncActions';
 
 import { TSearchPizzaParams } from '../redux/pizza/types';
 
-import Categories from '../components/Categories';
-import Sort from '../components/Sort';
-import PizzaBlock from '../components/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
+import { Categories, Sort, PizzaBlock, Skeleton } from '../components';
 
 import { list } from '../components/Sort';
 

@@ -7,7 +7,7 @@ type TCategoriesProps = {
   category: number;
 };
 
-const Categories: React.FC<TCategoriesProps> = memo(({ category }) => {
+export const Categories: React.FC<TCategoriesProps> = memo(({ category }) => {
   const dispatch = useAppDispatch();
 
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
@@ -28,5 +28,3 @@ const Categories: React.FC<TCategoriesProps> = memo(({ category }) => {
     </div>
   );
 });
-
-export default Categories;
