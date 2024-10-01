@@ -1,7 +1,9 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../redux/store';
 import { useLocation } from 'react-router-dom';
-import { selectCart } from '../redux/slices/cartSlice';
+import { selectCart, addItem } from '../redux/slices/cartSlice';
 
 import Search from './Search';
 
@@ -10,8 +12,21 @@ import logoSvg from '../assets/img/pizza-logo.svg';
 const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const { pathname } = useLocation();
+  const dispatch = useAppDispatch();
+  const isMounted = useRef(false);
 
   const itemsCount = items.reduce((sum: number, obj: any) => sum + obj.count, 0);
+
+  // При первом рендере isMounted.current = false и в localStorage ничего не сохраниться, а только поменяется на true
+  // При втором и последующем рендере isMounted.current = true уже и каждый раз будет обновляться localStorage
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem('cart', json);
+    }
+    // console.log(json);
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className="header">

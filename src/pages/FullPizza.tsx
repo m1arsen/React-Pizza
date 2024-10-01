@@ -10,13 +10,12 @@ const FullPizza: React.FC = () => {
   }>();
   const { pizzaId } = useParams();
   const navigate = useNavigate();
+  const apiBase = process.env.REACT_APP_MOCKAPI_TOKEN;
 
   useEffect(() => {
     async function fetchPizza() {
       try {
-        const { data } = await axios.get(
-          'https://66f31c6771c84d805877e165.mockapi.io/items/' + pizzaId,
-        );
+        const { data } = await axios.get(`https://${apiBase}.mockapi.io/items/${pizzaId}`);
         setPizza(data);
       } catch (error) {
         alert('Ошибка при получении пиццы!');
