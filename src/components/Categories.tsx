@@ -1,9 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { memo } from 'react';
+import { useAppDispatch } from '../redux/store';
 import { setCategoryId } from '../redux/slices/filterSlice';
 
-const Categories: React.FC = () => {
-  const dispatch = useDispatch();
-  const categoryId: number = useSelector((state: any) => state.filter.categoryId);
+type TCategoriesProps = {
+  category: number;
+};
+
+const Categories: React.FC<TCategoriesProps> = memo(({ category }) => {
+  const dispatch = useAppDispatch();
 
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
@@ -12,7 +16,7 @@ const Categories: React.FC = () => {
       <ul>
         {categories.map((categoryName, i) => (
           <li
-            className={i === categoryId ? 'active' : ''}
+            className={i === category ? 'active' : ''}
             onClick={() => dispatch(setCategoryId(i))}
             key={i}
           >
@@ -22,6 +26,6 @@ const Categories: React.FC = () => {
       </ul>
     </div>
   );
-};
+});
 
 export default Categories;
