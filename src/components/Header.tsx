@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../redux/store';
-import { useLocation } from 'react-router-dom';
-import { selectCart, addItem } from '../redux/slices/cartSlice';
+import { selectCart } from '../redux/cart/selectors';
 
 import Search from './Search';
 
@@ -12,7 +11,6 @@ import logoSvg from '../assets/img/pizza-logo.svg';
 const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const { pathname } = useLocation();
-  const dispatch = useAppDispatch();
   const isMounted = useRef(false);
 
   const itemsCount = items.reduce((sum: number, obj: any) => sum + obj.count, 0);

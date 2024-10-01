@@ -5,8 +5,15 @@ import qs from 'qs';
 
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../redux/store';
-import { setFilters, selectFilter } from '../redux/slices/filterSlice';
-import { fetchPizzas, selectPizzaData, TSearchPizzaParams } from '../redux/slices/pizzaSlice';
+
+import { setFilters } from '../redux/filter/slice';
+
+import { selectPizzaData } from '../redux/pizza/selectors';
+import { selectFilter } from '../redux/filter/selectors';
+
+import { fetchPizzas } from '../redux/pizza/asyncActions';
+
+import { TSearchPizzaParams } from '../redux/pizza/types';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';

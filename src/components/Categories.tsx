@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { useAppDispatch } from '../redux/store';
-import { setCategoryId } from '../redux/slices/filterSlice';
+
+import { setCategoryId } from '../redux/filter/slice';
 
 type TCategoriesProps = {
   category: number;
