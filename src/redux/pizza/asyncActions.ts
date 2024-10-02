@@ -9,7 +9,7 @@ export const fetchPizzas = createAsyncThunk<TPizza[], TSearchPizzaParams>(
     const apiBase = process.env.REACT_APP_MOCKAPI_TOKEN;
 
     const { data } = await axios.get<TPizza[]>(
-      `https://${apiBase}.mockapi.io/items?${category}&sortBy=${sortBy}&order=desc`,
+      `https://${apiBase}.mockapi.io/items?${category}sortBy=${sortBy}&order=desc`,
     );
 
     return data;
