@@ -6,6 +6,8 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
+import PagePreloader from './components/PagePreloader';
+
 import './scss/app.scss';
 
 const Cart = lazy(() => import(/* webpackChunkName: "Cart" */ './pages/Cart'));
@@ -19,7 +21,7 @@ function App() {
         <Route
           path="cart"
           element={
-            <Suspense fallback={<div>Идет загрузка корзины...</div>}>
+            <Suspense fallback={<PagePreloader />}>
               <Cart />
             </Suspense>
           }
@@ -27,11 +29,12 @@ function App() {
         <Route
           path="pizza/:pizzaId"
           element={
-            <Suspense fallback={<div>Идет загрузка пиццы...</div>}>
+            <Suspense fallback={<PagePreloader />}>
               <FullPizza />
             </Suspense>
           }
         />
+        <Route path="test" element={<PagePreloader />} />
         <Route path="*" element={<NotFound />} />
         <Route />
       </Route>

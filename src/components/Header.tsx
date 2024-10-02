@@ -13,8 +13,6 @@ export const Header: React.FC = () => {
   const { pathname } = useLocation();
   const isMounted = useRef(false);
 
-  console.log(pathname);
-
   const itemsCount = items.reduce((sum: number, obj: any) => sum + obj.count, 0);
 
   // При первом рендере isMounted.current = false и в localStorage ничего не сохраниться, а только поменяется на true

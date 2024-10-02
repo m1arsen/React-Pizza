@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { plusItem, minusItem, removeItem } from '../redux/cart/slice';
 
+import { Link } from 'react-router-dom';
+
 type CartItemProps = {
   id: string;
   title: string;
@@ -36,9 +38,12 @@ export const CartItem: React.FC<CartItemProps> = ({
 
   return (
     <div className="cart__item">
-      <div className="cart__item-img">
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
-      </div>
+      <Link to={`/pizza/${id}`}>
+        <div className="cart__item-img">
+          <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+        </div>
+      </Link>
+
       <div className="cart__item-info">
         <h3>{title}</h3>
         <p>
