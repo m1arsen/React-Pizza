@@ -61,8 +61,6 @@ const Home: React.FC = () => {
         }),
       );
     }
-
-    isSearch.current = true;
   }, []);
 
   useEffect(() => {
@@ -72,7 +70,7 @@ const Home: React.FC = () => {
         sortBy: sort.sortProperty,
       });
 
-      navigate('?' + queryString);
+      navigate(categoryId ? '?' + queryString : '/');
     }
     isMounted.current = true;
   }, [categoryId, sort]);

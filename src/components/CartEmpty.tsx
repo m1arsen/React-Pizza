@@ -7,7 +7,7 @@ export const CartEmpty: React.FC = () => {
 
   const goBackButton = () => {
     window.scrollTo(0, 0);
-    navigate('/');
+    navigate(-1);
   };
 
   return (
