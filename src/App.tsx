@@ -34,7 +34,6 @@ function App() {
             </Suspense>
           }
         />
-        <Route path="test" element={<PagePreloader />} />
         <Route path="*" element={<NotFound />} />
         <Route />
       </Route>

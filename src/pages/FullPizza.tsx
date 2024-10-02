@@ -41,7 +41,7 @@ const FullPizza: React.FC = () => {
   }, [pizzaId]);
 
   if (!pizza) {
-    return <>Загрузка...</>;
+    return <div className="full-pizza__loading">Пицца загружается...</div>;
   }
 
   const onCLickAdd = () => {
