@@ -2,6 +2,23 @@
   &__container {
     display: flex;
     gap: 20px;
+
+    @media (max-width: 1060px) {
+      flex-direction: column;
+    }
+  }
+
+  &__image {
+    width: 50%;
+
+    @media (max-width: 1060px) {
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
   }
 
   &__title {
@@ -10,6 +27,18 @@
     font-size: 40px;
     line-height: 1;
     font-weight: 900;
+
+    @media (max-width: 1060px) {
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 30px;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 26px;
+    }
   }
 
   &__description {
@@ -17,20 +46,27 @@
 
     font-size: 24px;
     line-height: 1;
-  }
 
-  &__image {
-    width: 50%;
+    @media (max-width: 600px) {
+      font-size: 22px;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 20px;
+    }
   }
 
   &__selector {
-    margin-bottom: 20px;
-    display: flex;
-    background-color: #f3f3f3;
-    border-radius: 10px;
-    flex-direction: column;
     padding: 6px;
     max-width: 400px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #f3f3f3;
+    border-radius: 10px;
+
     text-align: center;
 
     ul {
@@ -62,6 +98,18 @@
     display: flex;
     align-items: center;
     column-gap: 30px;
+
+    &-controllers {
+      margin-bottom: 20px;
+
+      flex-direction: column;
+      display: flex;
+      gap: 20px;
+
+      @media (max-width: 1060px) {
+        align-items: center;
+      }
+    }
 
     &-buttons {
       margin-top: 40px;
@@ -106,5 +154,13 @@
     text-align: center;
 
     font-size: 40px;
+
+    @media (max-width: 600px) {
+      font-size: 30px;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 26px;
+    }
   }
 }

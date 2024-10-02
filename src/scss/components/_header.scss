@@ -1,11 +1,30 @@
 @import '../variables';
 
+.container__header {
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
 
+  @media (max-width: 950px) {
+    a {
+      order: 1;
+    }
+
+    &__cart {
+      order: 2;
+    }
+  }
+
   @media (max-width: 600px) {
     padding: 20px 0;
+  }
+
+  @media (max-width: 400px) {
+    padding: 20px 0 0;
   }
 
   .container {
