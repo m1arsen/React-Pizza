@@ -3,6 +3,7 @@ export type TPizza = {
   title: string;
   price: number;
   imageUrl: string;
+  description: string;
   types: number[];
   sizes: number[];
 };

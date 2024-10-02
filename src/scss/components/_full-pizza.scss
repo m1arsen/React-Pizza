@@ -1,0 +1,103 @@
+.full-pizza {
+  &__container {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+
+    font-size: 40px;
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  &__description {
+    margin-bottom: 20px;
+
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  &__image {
+    width: 50%;
+  }
+
+  &__selector {
+    margin-bottom: 20px;
+    display: flex;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 6px;
+    max-width: 400px;
+    text-align: center;
+
+    ul {
+      display: flex;
+      flex: 1;
+
+      &:first-of-type {
+        margin-bottom: 6px;
+      }
+
+      li {
+        padding: 8px;
+        flex: 1;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        @include noselect();
+        &.active {
+          background: #ffffff;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+          border-radius: 5px;
+          cursor: auto;
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+
+    &-buttons {
+      margin-top: 40px;
+
+      .go-back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 210px;
+        padding: 15px 20px;
+
+        border-color: darken($color: $gray-line, $amount: 10);
+
+        span {
+          color: darken($color: $gray-line, $amount: 20);
+          font-weight: 500;
+          font-weight: 600;
+        }
+
+        &:hover {
+          background-color: darken($color: $gray-line, $amount: 90);
+          border-color: darken($color: $gray-line, $amount: 90);
+
+          span {
+            color: $gray-line;
+          }
+        }
+
+        svg {
+          margin-right: 12px;
+          path {
+            fill: transparent;
+            stroke-width: 2;
+          }
+        }
+      }
+    }
+  }
+}
