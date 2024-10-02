@@ -16,6 +16,7 @@ import { fetchPizzas } from '../redux/pizza/asyncActions';
 import { TSearchPizzaParams, TPizza } from '../redux/pizza/types';
 
 import { Categories, Sort, PizzaBlock, Skeleton } from '../components';
+import { NotFoundPizza } from '../components/NotFoundPizza';
 
 import { list } from '../components/Sort';
 
@@ -97,6 +98,7 @@ const Home: React.FC = () => {
         <Sort value={sort} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
+
       {status === 'error' ? (
         <div className="content__error-info">
           <h2>Произошла ошибка 😕</h2>
@@ -104,8 +106,12 @@ const Home: React.FC = () => {
             К сожалению, не удалось получить пиццы. <br /> Попробуйте повторить попытку позже.
           </p>
         </div>
+      ) : status === 'loading' ? (
+        <div className="content__items">{skeletons}</div>
+      ) : pizzas.length === 0 ? (
+        <NotFoundPizza />
       ) : (
-        <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
+        <div className="content__items">{pizzas}</div>
       )}
     </div>
   );
